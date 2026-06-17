@@ -12,3 +12,18 @@ compatibility_date = "2024-12-18"
 # Uncomment and set your Cloudflare Pages domain after deploying:
 # pattern = "activity-map.pages.dev/api/*"
 # zone_name = "pages.dev"
+
+[observability]
+enabled = false
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = false
+persist = true
+head_sampling_rate = 1
