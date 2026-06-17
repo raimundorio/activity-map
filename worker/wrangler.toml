@@ -1,0 +1,14 @@
+name = "activity-map-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-18"
+
+[vars]
+# Set these via `wrangler secret put` instead of here:
+# SUPABASE_URL
+# SUPABASE_SERVICE_KEY
+# SUPABASE_JWT_SECRET
+
+[[routes]]
+# Uncomment and set your Cloudflare Pages domain after deploying:
+# pattern = "activity-map.pages.dev/api/*"
+# zone_name = "pages.dev"
