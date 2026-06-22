@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { MapView } from '../components/map/MapView'
 import { SidePanel } from '../components/sidebar/SidePanel'
+import { AdminPanel } from '../components/admin/AdminPanel'
 import { usePins } from '../hooks/usePins'
 import { useAuth } from '../hooks/useAuth'
 import type { Pin, NewPin } from '../types'
@@ -11,6 +12,9 @@ export function MapPage() {
   const [selectedPin, setSelectedPin] = useState<Pin | null>(null)
   const [draftLocation, setDraftLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [filterGroupId, setFilterGroupId] = useState<string | null>(null)
+  const [showAdmin, setShowAdmin] = useState(false)
+
+  const isAdmin = profile?.role === 'admin'
 
   const groupMap = new Map<string, NonNullable<Pin['group']>>()
   for (const p of pins) {
@@ -82,6 +86,14 @@ export function MapPage() {
             </span>
           )}
           <span className="text-slate-400 text-xs">{user?.email}</span>
+          {isAdmin && (
+            <button
+              onClick={() => setShowAdmin(true)}
+              className="text-xs bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded-md transition-colors"
+            >
+              Admin
+            </button>
+          )}
           <button
             onClick={signOut}
             className="text-xs text-slate-400 hover:text-white transition-colors"
@@ -128,6 +140,13 @@ export function MapPage() {
           currentUserId={user?.id}
         />
       </div>
+
+      {showAdmin && isAdmin && user && (
+        <AdminPanel
+          onClose={() => setShowAdmin(false)}
+          currentUserId={user.id}
+        />
+      )}
     </div>
   )
 }

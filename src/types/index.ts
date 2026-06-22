@@ -11,6 +11,7 @@ export interface Profile {
   full_name: string | null
   group_id: string | null
   group?: Group
+  role: 'admin' | 'member' | 'viewer'
   created_at: string
 }
 
