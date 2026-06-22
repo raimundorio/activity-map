@@ -4,3 +4,7 @@ dist
 .env.local
 .wrangler
 worker/node_modules
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
